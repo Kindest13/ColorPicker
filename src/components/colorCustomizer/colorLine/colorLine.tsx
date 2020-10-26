@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { FC } from 'react';
+import IProps from './types';
 import styled from 'styled-components';
 
 const LineWrapper = styled.div`
@@ -30,17 +31,17 @@ const ColorLabel = styled.span.attrs(p => ({
   margin-right: 5px;
 `
 
-export default ({ color, label, handleColorChange, value }) => {
-  return (
-    <LineWrapper>
-      <ColorLabel color={color}>{label}</ColorLabel>
-      <Input
-        onChange={(event) => handleColorChange(color, event)}
-        value={value}
-        min={0}
-        max={255}
-        type="range"
-        style={{ background: `linear-gradient(to right, #000, ${color})` }} />
-    </LineWrapper>
-  );
-  }
+const ColorLine: FC<IProps> = ({ color, label, handleColorChange, value }) => (
+  <LineWrapper>
+    <ColorLabel color={color}>{label}</ColorLabel>
+    <Input
+      onChange={(event) => handleColorChange(color, event)}
+      value={value}
+      min={0}
+      max={255}
+      type="range"
+      style={{ background: `linear-gradient(to right, #000, ${color})` }} />
+  </LineWrapper>
+);
+
+export default ColorLine;

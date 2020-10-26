@@ -1,11 +1,12 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, FC } from 'react';
 import useOnClickOutside from 'use-onclickoutside';
-import Button from '../button/button';
+import { IProps } from './types';
+import { HandleColorSetter } from '../../pages/types';
 import ColorBox from '../colorBox/colorBox';
 import { presets } from '../../constants';
 import styled from 'styled-components';
 
-const DropdownSelector = styled.div`
+const Dropdown = styled.div`
   position: relative;
 `
 
@@ -30,12 +31,17 @@ const ListItem = styled.li`
     cursor: pointer;
   }
 `
+const Toggler = styled.button`
+  padding: 0.5em 0.75em;
+  width: 100%;
+  height: 100%;
+`
 
-export default ({ onColorChange }) => {
+const DropdownSelector: FC<IProps> = ({ onColorChange }) => {
   const [open, setOpen] = useState(false);
   const toggle = () => setOpen(!open);
   const list = useRef(null);
-  const changeColorHandler = (event) => {
+  const changeColorHandler: HandleColorSetter = (event) => {
     toggle();
     onColorChange(event)
   }
@@ -46,10 +52,10 @@ export default ({ onColorChange }) => {
   });
 
   return (
-    <DropdownSelector ref={list}>
-      <Button toggle={toggle}>
+    <Dropdown ref={list}>
+      <Toggler onClick={toggle}>
           <i className={`fas fa-angle-${open ? 'up' : 'down'}`}></i>
-      </Button>
+      </Toggler>
       {
         open && (
           <SelectList onClick={changeColorHandler}>
@@ -66,6 +72,8 @@ export default ({ onColorChange }) => {
           </SelectList>
         )
       }
-    </DropdownSelector>
+    </Dropdown>
   );
 }
+
+export default DropdownSelector;

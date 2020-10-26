@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Header from '../components/header/header';
-import TextColor from '../components/textColor/textColor';
+import HexColor from '../components/hexColor/hexColor';
 import ColorCustomizer from '../components/colorCustomizer/colorCustomizer';
 import DropdownSelector from '../components/dropdownSelector/dropdownSelector';
 import rgbToHex from 'rgb-hex';
+import { GetHexColor, SubmitColorChange, HandleColorSetter } from './types';
 
 const Picker = styled.div`
   display: flex;
@@ -12,22 +13,23 @@ const Picker = styled.div`
 `
 
 const ColorPicker = () => {
-  const [color, setColor] = useState('#000000');
+  const [color, setColor] = useState<string>('#000000');
 
-  const getHexColor = rgbColor => `#${rgbToHex(...Object.values(rgbColor))}`;
+  const getHexColor: GetHexColor = rgbColor => `#${rgbToHex(rgbColor.red, rgbColor.green, rgbColor.blue)}`;
 
-  const submitColorChange = rgbColor => {
+
+  const submitColorChange: SubmitColorChange = rgbColor => {
     const hex = getHexColor(rgbColor);
     setColor(hex);
   }
 
   
-  const handleColorSetter = (event) => {
+  const handleColorSetter: HandleColorSetter = (event) => {
     let color = event.target.getAttribute("value");
     
     if(!color) {
-      const parent = event.target.parentNode;
-      color = parent.getAttribute("value");
+      const list = event.target.parentNode as HTMLUListElement;
+      color = list.getAttribute("value");
     }
     setColor(color);
   }
@@ -36,7 +38,7 @@ const ColorPicker = () => {
     <div>
       <Header />
       <Picker>
-        <TextColor hex={color} />
+        <HexColor hex={color} />
         <ColorCustomizer
           submit={submitColorChange}
           hex={color} />

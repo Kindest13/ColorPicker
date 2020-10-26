@@ -1,16 +1,17 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, FC } from 'react';
 import ColorLine from './colorLine/colorLine';
 import ColorBox from '../colorBox/colorBox';
 import { colorsData, config } from '../../constants';
-import Button from '../button/button';
+import { IProps, HandleColorChange } from './types';
+import { IRgbColor } from '../../types';
 import useOnClickOutside from 'use-onclickoutside';
 import hexToRgb from 'hex-rgb';
 import rgbToHex from 'rgb-hex';
 import styled from 'styled-components';
 
-const { rgba } = config;
+const { rgb } = config;
 
-const ColorCustomizer = styled.div`
+const Customizer = styled.div`
   background-color: #EFEFEF;
   padding: 20px;
   position: absolute;
@@ -27,10 +28,16 @@ const Cancel = styled.button`
   margin-right: 10px;
 `
 
-export default ({ submit, hex }) => {
-  const [color, setColor] = useState(hex);
-  const [RGBColors, setRGBColors] = useState(rgba);
-  const [open, setOpen] = useState(false);
+const Toggler = styled.button`
+  padding: 0.5em 0.75em;
+  width: 100%;
+  height: 100%;
+`
+
+const ColorCustomizer : FC<IProps> =  ({ submit, hex }) => {
+  const [color, setColor] = useState<string>(hex);
+  const [RGBColors, setRGBColors] = useState<IRgbColor>(rgb);
+  const [open, setOpen] = useState<boolean>(false);
   const customizer = useRef(null);
   
   useEffect(() => {
@@ -40,11 +47,11 @@ export default ({ submit, hex }) => {
   
   const toggle = () => setOpen(!open);
   
-  const handleColorChange = (color, event) => {
+  const handleColorChange: HandleColorChange = (color, event) => {
     const value = Number(event.target.value);
     const updatedColors = { ...RGBColors, [color]: value };
     setRGBColors(updatedColors);
-    setColor(`#${rgbToHex(...Object.values(updatedColors))}`);
+    setColor(`#${rgbToHex(updatedColors.red, updatedColors.green, updatedColors.blue)}`);
   };
 
   const handleCancel = () => {
@@ -63,12 +70,12 @@ export default ({ submit, hex }) => {
 
   return (
     <div ref={customizer}>
-    <Button toggle={toggle}>
+    <Toggler onClick={toggle}>
       <ColorBox hex={color} />
-    </Button>
+    </Toggler>
       {
         open && (
-          <ColorCustomizer>
+          <Customizer>
             {
               colorsData.map(({ label, color }) => (
                 <ColorLine
@@ -83,9 +90,11 @@ export default ({ submit, hex }) => {
               <Cancel onClick={handleCancel}>Cancel</Cancel>
               <button onClick={handleSubmit}>Ok</button>
             </Buttons>
-          </ColorCustomizer>
+          </Customizer>
         )
       }
     </div>
   )
 }
+
+export default ColorCustomizer;

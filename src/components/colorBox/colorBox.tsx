@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { FC } from 'react';
+import IProps from './types';
 import styled from 'styled-components';
 
-const ColorBox = styled.div.attrs(p => ({
+const Box = styled.div.attrs(p => ({
   style: {
     backgroundColor: p.color
   }
@@ -10,4 +11,6 @@ const ColorBox = styled.div.attrs(p => ({
   height: 13px;
 `
 
-export default ({ hex }) => <ColorBox color={hex} />;
+const ColorBox: FC<IProps> = ({ hex }) => <Box color={hex} />;
+
+ export default ColorBox;
