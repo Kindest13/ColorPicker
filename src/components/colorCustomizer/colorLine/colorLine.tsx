@@ -11,6 +11,7 @@ const LineWrapper = styled.div`
 const Input = styled.input`
   appearance: none;
   outline: none;
+  border-radius: 5px;
   &::-webkit-slider-thumb {
     appearance: none;
     cursor: pointer;

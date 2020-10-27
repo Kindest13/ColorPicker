@@ -1,3 +1,3 @@
 export default interface IProps {
-  hex: string
+  hex: string;
 }

@@ -5,7 +5,14 @@
   "main": "lib",
   "scripts": {
     "start": "webpack-dev-server --mode development --open --hot",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "rollup -c",
+    "build:watch": "rollup -c -w",
+    "test": "jest",
+    "test-coverage": "jest --coverage",
+    "lint": "eslint -c eslintrc.json src/**/*.ts",
+    "lint:fix": "eslint -c eslintrc.json src/**/*.ts --fix",
+    "format": "prettier --write 'src/**/*.ts'",
+    "check": "npm run test && npm run lint"
   },
   "repository": {
     "type": "git",
@@ -27,18 +34,63 @@
     "styled-components": "^5.2.0",
     "use-onclickoutside": "^0.3.1"
   },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "json"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "/src/.*\\.(test|spec).(ts|tsx|js)$",
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,tsx,ts}",
+      "!**/node_modules/**",
+      "!**/vendor/**",
+      "!src/index.ts"
+    ],
+    "coverageReporters": [
+      "text"
+    ]
+  },
   "devDependencies": {
     "@babel/cli": "^7.11.6",
     "@babel/core": "^7.11.6",
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-react": "^7.10.4",
     "@babel/preset-typescript": "^7.10.4",
+    "@rollup/plugin-babel": "^5.2.1",
+    "@rollup/plugin-commonjs": "^15.1.0",
+    "@rollup/plugin-node-resolve": "^9.0.0",
     "@types/react": "^16.9.51",
     "@types/react-dom": "^16.9.8",
+    "@typescript-eslint/eslint-plugin": "^4.6.0",
+    "@typescript-eslint/eslint-plugin-tslint": "^4.6.0",
+    "@typescript-eslint/parser": "^4.6.0",
     "babel-loader": "^8.1.0",
+    "css-loader": "^5.0.0",
+    "eslint": "^7.12.1",
+    "eslint-config-prettier": "^6.14.0",
+    "eslint-config-react": "^1.1.7",
+    "eslint-config-typescript": "^3.0.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.21.5",
     "file-loader": "^6.1.0",
     "html-webpack-plugin": "^4.5.0",
-    "typescript": "^4.0.3",
+    "husky": "^4.3.0",
+    "jest": "^26.6.1",
+    "prettier": "^2.1.2",
+    "prettier-eslint": "^11.0.0",
+    "rollup": "^2.32.1",
+    "rollup-plugin-size-snapshot": "^0.12.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.28.0",
+    "rollup-plugin-visualizer": "^4.1.2",
+    "style-loader": "^2.0.0",
+    "tslint": "^6.1.3",
+    "typescript": "^4.0.5",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"

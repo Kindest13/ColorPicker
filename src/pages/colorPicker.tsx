@@ -7,9 +7,23 @@ import DropdownSelector from '../components/dropdownSelector/dropdownSelector';
 import rgbToHex from 'rgb-hex';
 import { GetHexColor, SubmitColorChange, HandleColorSetter } from './types';
 
-const Picker = styled.div`
+const Picker = styled.main`
   display: flex;
   position: relative;
+  border: 2px solid #EFEFEF;
+  border-radius: 5px;
+  width: 200px;
+  background-color: #ffffff;
+`
+
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  background-color: #85144b;
+  height: 100vh;
+  width: 100vw;
 `
 
 const ColorPicker = () => {
@@ -25,17 +39,17 @@ const ColorPicker = () => {
 
   
   const handleColorSetter: HandleColorSetter = (event) => {
-    let color = event.target.getAttribute("value");
+    let list = event.target as HTMLLIElement;
     
-    if(!color) {
-      const list = event.target.parentNode as HTMLUListElement;
-      color = list.getAttribute("value");
+    if(list.tagName !== "LI") {
+      list = list.parentNode as HTMLLIElement;
     }
+    const color = list.getAttribute("value");
     setColor(color);
   }
 
   return (
-    <div>
+    <Wrapper>
       <Header />
       <Picker>
         <HexColor hex={color} />
@@ -44,7 +58,7 @@ const ColorPicker = () => {
           hex={color} />
         <DropdownSelector onColorChange={handleColorSetter} />
       </Picker>
-    </div>
+    </Wrapper>
   );
 }
 

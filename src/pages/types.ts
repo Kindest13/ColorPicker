@@ -5,5 +5,4 @@ export type GetHexColor = (rgbColor: IRgbColor) => string;
 
 export type SubmitColorChange = (rgbColor: IRgbColor) => void;
 
-export type HandleColorSetter = (event: MouseEvent<HTMLUListElement>) => void;
-
+export type HandleColorSetter = (event: MouseEvent<HTMLElement>) => void;

@@ -3,16 +3,16 @@
     "allowSyntheticDefaultImports": true,
     "jsx": "react",
     "module": "commonjs",
+    "declaration": true,
     "noImplicitAny": true,
     "outDir": "./build/",
     "isolatedModules": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "preserveConstEnums": true,
     "removeComments": true,
     "sourceMap": true,
     "target": "ES2019"
   },
   "exclude": ["node_modules"],
-  "include": ["src"]
+  "include": ["src/**/*"]
 }

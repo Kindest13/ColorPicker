@@ -1,5 +1,12 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const Header = styled.h1`
+  color: #ffffff;
+`
 
 export default () => (
-  <h1>Color Picker</h1>
+  <header>
+    <Header>Color Picker</Header>
+  </header>
 );

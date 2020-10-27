@@ -1,24 +1,25 @@
 export interface IRgbColor {
-  red: number,
-  green: number,
-  blue: number,
-  alpha?: number
+  red: number;
+  green: number;
+  blue: number;
+  alpha?: number;
+  [key: string]: number;
 }
 
 export interface IColorData {
-  label: string,
-  color: string
+  label: string;
+  color: string;
 }
 
 export interface IConfig {
-  squareSize: number,
-  barSize: number,
-  delay: number,
-  offsetLeft: number,
-  rgb: IRgbColor
+  squareSize: number;
+  barSize: number;
+  delay: number;
+  offsetLeft: number;
+  rgb: IRgbColor;
 }
 
 export interface IPreset {
-  label: string,
-  value: string
+  label: string;
+  value: string;
 }

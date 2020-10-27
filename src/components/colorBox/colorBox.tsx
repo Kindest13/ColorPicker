@@ -7,8 +7,8 @@ const Box = styled.div.attrs(p => ({
     backgroundColor: p.color
   }
 }))`
-  width: 13px;
-  height: 13px;
+  width: 15px;
+  height: 15px;
 `
 
 const ColorBox: FC<IProps> = ({ hex }) => <Box color={hex} />;

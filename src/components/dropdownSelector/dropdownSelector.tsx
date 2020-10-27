@@ -1,13 +1,13 @@
 import React, { useState, useRef, FC } from 'react';
 import useOnClickOutside from 'use-onclickoutside';
-import { IProps } from './types';
-import { HandleColorSetter } from '../../pages/types';
+import { IProps, ChangeColorHandler } from './types';
 import ColorBox from '../colorBox/colorBox';
 import { presets } from '../../constants';
 import styled from 'styled-components';
 
 const Dropdown = styled.div`
   position: relative;
+  flex-grow: 1;
 `
 
 const SelectList = styled.ul`
@@ -29,19 +29,22 @@ const ListItem = styled.li`
   &:hover {
     background-color: #3C46FF;
     cursor: pointer;
+    color: #ffffff;
   }
 `
 const Toggler = styled.button`
   padding: 0.5em 0.75em;
   width: 100%;
   height: 100%;
+  border: none;
+  outline: none;
 `
 
 const DropdownSelector: FC<IProps> = ({ onColorChange }) => {
   const [open, setOpen] = useState(false);
   const toggle = () => setOpen(!open);
   const list = useRef(null);
-  const changeColorHandler: HandleColorSetter = (event) => {
+  const changeColorHandler: ChangeColorHandler = (event) => {
     toggle();
     onColorChange(event)
   }

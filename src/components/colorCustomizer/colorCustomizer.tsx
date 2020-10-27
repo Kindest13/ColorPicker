@@ -11,6 +11,10 @@ import styled from 'styled-components';
 
 const { rgb } = config;
 
+const Wrapper = styled.div`
+  flex-grow: 1;
+`
+
 const Customizer = styled.div`
   background-color: #EFEFEF;
   padding: 20px;
@@ -26,12 +30,42 @@ const Buttons = styled.div`
 
 const Cancel = styled.button`
   margin-right: 10px;
+  background-color: #ab0000;
+  border: none;
+  color: #ffffff;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  font-weight: bold;
+  outline: none;
+  &:hover {
+    cursor: pointer;
+    background-color: #ff0000;
+  }
+`
+
+const Apply = styled.button`
+  background-color: #00a900;
+  border: none;
+  color: #ffffff;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  font-weight: bold;
+  outline: none;
+  &:hover {
+    cursor: pointer;
+    background-color: #00f000;
+  }
 `
 
 const Toggler = styled.button`
-  padding: 0.5em 0.75em;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100%;
+  border: none;
+  outline: none;
 `
 
 const ColorCustomizer : FC<IProps> =  ({ submit, hex }) => {
@@ -41,7 +75,7 @@ const ColorCustomizer : FC<IProps> =  ({ submit, hex }) => {
   const customizer = useRef(null);
   
   useEffect(() => {
-    setRGBColors(hexToRgb(hex));
+    setRGBColors(hexToRgb(hex) as IRgbColor);
     setColor(hex);
   }, [hex]);
   
@@ -56,7 +90,7 @@ const ColorCustomizer : FC<IProps> =  ({ submit, hex }) => {
 
   const handleCancel = () => {
     if(!open) return;
-    setRGBColors(hexToRgb(hex));
+    setRGBColors(hexToRgb(hex) as IRgbColor);
     setColor(hex);
     setOpen(false);
   }
@@ -69,10 +103,10 @@ const ColorCustomizer : FC<IProps> =  ({ submit, hex }) => {
   useOnClickOutside(customizer, handleCancel);
 
   return (
-    <div ref={customizer}>
-    <Toggler onClick={toggle}>
-      <ColorBox hex={color} />
-    </Toggler>
+    <Wrapper ref={customizer}>
+      <Toggler onClick={toggle}>
+        <ColorBox hex={color} />
+      </Toggler>
       {
         open && (
           <Customizer>
@@ -88,12 +122,12 @@ const ColorCustomizer : FC<IProps> =  ({ submit, hex }) => {
             }
             <Buttons>
               <Cancel onClick={handleCancel}>Cancel</Cancel>
-              <button onClick={handleSubmit}>Ok</button>
+              <Apply onClick={handleSubmit}>Ok</Apply>
             </Buttons>
           </Customizer>
         )
       }
-    </div>
+    </Wrapper>
   )
 }
 
