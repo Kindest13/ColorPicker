@@ -26,7 +26,7 @@ const Wrapper = styled.div`
   width: 100vw;
 `
 
-const ColorPicker = () => {
+export default function ColorPicker() {
   const [color, setColor] = useState<string>('#000000');
 
   const getHexColor: GetHexColor = rgbColor => `#${rgbToHex(rgbColor.red, rgbColor.green, rgbColor.blue)}`;
@@ -61,5 +61,3 @@ const ColorPicker = () => {
     </Wrapper>
   );
 }
-
-export default ColorPicker;

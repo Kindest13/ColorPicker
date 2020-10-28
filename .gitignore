@@ -4,7 +4,9 @@ coverage/
 lib/
 node_modules/
 build/
+__snapshots__/
 
+.size-snapshot.json
 *.log
 junit.xml
 draft.js
