@@ -6,6 +6,7 @@ node_modules/
 build/
 __snapshots__/
 
+stats.html
 .size-snapshot.json
 *.log
 junit.xml
