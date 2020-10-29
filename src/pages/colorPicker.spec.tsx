@@ -1,10 +1,10 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react'
 import ColorPicker from './colorPicker';
 
-describe('<ColorPicker/> with no props', () => {
-  const container = shallow(<ColorPicker />);
+describe('<ColorPicker/>', () => {
+  const { container } = render(<ColorPicker/>);
   it('should match the snapshot', () => {
-    expect(container.html()).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   })
 })
