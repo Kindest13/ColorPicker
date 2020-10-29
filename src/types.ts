@@ -11,14 +11,6 @@ export interface IColorData {
   color: string;
 }
 
-export interface IConfig {
-  squareSize: number;
-  barSize: number;
-  delay: number;
-  offsetLeft: number;
-  rgb: IRgbColor;
-}
-
 export interface IPreset {
   label: string;
   value: string;

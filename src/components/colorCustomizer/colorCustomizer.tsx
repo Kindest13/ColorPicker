@@ -2,15 +2,13 @@ import React, { useState, useRef, useEffect, FC } from 'react';
 import ColorLine from './colorLine/colorLine';
 import ColorBox from '../colorBox/colorBox';
 import Toggler from '../toggler/toggler';
-import { colorsData, config } from '../../constants';
+import { colorsData, rgbSetup } from '../../constants';
 import { IProps, HandleColorChange } from './types';
 import { IRgbColor } from '../../types';
 import useOnClickOutside from 'use-onclickoutside';
 import hexToRgb from 'hex-rgb';
 import rgbToHex from 'rgb-hex';
 import styled from 'styled-components';
-
-const { rgb } = config;
 
 const Customizer = styled.div`
   background-color: #EFEFEF;
@@ -56,7 +54,7 @@ const Apply = styled.button`
 
 const ColorCustomizer : FC<IProps> =  ({ submit, hex }) => {
   const [color, setColor] = useState<string>(hex);
-  const [RGBColors, setRGBColors] = useState<IRgbColor>(rgb);
+  const [RGBColors, setRGBColors] = useState<IRgbColor>(rgbSetup);
   const [open, setOpen] = useState<boolean>(false);
   const customizer = useRef(null);
   
