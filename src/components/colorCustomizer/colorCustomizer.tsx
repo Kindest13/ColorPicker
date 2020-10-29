@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect, FC } from 'react';
 import ColorLine from './colorLine/colorLine';
 import ColorBox from '../colorBox/colorBox';
+import Toggler from '../toggler/toggler';
 import { colorsData, config } from '../../constants';
 import { IProps, HandleColorChange } from './types';
 import { IRgbColor } from '../../types';
@@ -10,10 +11,6 @@ import rgbToHex from 'rgb-hex';
 import styled from 'styled-components';
 
 const { rgb } = config;
-
-const Wrapper = styled.div`
-  flex-grow: 1;
-`
 
 const Customizer = styled.div`
   background-color: #EFEFEF;
@@ -57,17 +54,6 @@ const Apply = styled.button`
   }
 `
 
-const Toggler = styled.button`
-  padding: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  border: none;
-  outline: none;
-`
-
 const ColorCustomizer : FC<IProps> =  ({ submit, hex }) => {
   const [color, setColor] = useState<string>(hex);
   const [RGBColors, setRGBColors] = useState<IRgbColor>(rgb);
@@ -103,8 +89,8 @@ const ColorCustomizer : FC<IProps> =  ({ submit, hex }) => {
   useOnClickOutside(customizer, handleCancel);
 
   return (
-    <Wrapper ref={customizer}>
-      <Toggler onClick={toggle}>
+    <div ref={customizer}>
+      <Toggler toggle={toggle}>
         <ColorBox hex={color} />
       </Toggler>
       {
@@ -127,7 +113,7 @@ const ColorCustomizer : FC<IProps> =  ({ submit, hex }) => {
           </Customizer>
         )
       }
-    </Wrapper>
+    </div>
   )
 }
 

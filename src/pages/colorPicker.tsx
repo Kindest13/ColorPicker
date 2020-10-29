@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Header from '../components/header/header';
 import HexColor from '../components/hexColor/hexColor';
-import ColorCustomizer from '../components/colorCustomizer/colorCustomizer';
-import DropdownSelector from '../components/dropdownSelector/dropdownSelector';
+import Controllers from '../components/controllers/controllers';
 import rgbToHex from 'rgb-hex';
 import { GetHexColor, SubmitColorChange, HandleColorSetter } from './types';
 
 const Picker = styled.main`
   display: flex;
+  justify-content: space-between;
   position: relative;
   border: 2px solid #EFEFEF;
   border-radius: 5px;
@@ -53,10 +53,10 @@ export default function ColorPicker() {
       <Header />
       <Picker>
         <HexColor hex={color} />
-        <ColorCustomizer
+        <Controllers
           submit={submitColorChange}
-          hex={color} />
-        <DropdownSelector onColorChange={handleColorSetter} />
+          hex={color}
+          onColorChange={handleColorSetter} />
       </Picker>
     </Wrapper>
   );

@@ -2,12 +2,12 @@ import React, { useState, useRef, FC } from 'react';
 import useOnClickOutside from 'use-onclickoutside';
 import { IProps, ChangeColorHandler } from './types';
 import ColorBox from '../colorBox/colorBox';
+import Toggler from '../toggler/toggler';
 import { presets } from '../../constants';
 import styled from 'styled-components';
 
 const Dropdown = styled.div`
   position: relative;
-  flex-grow: 1;
 `
 
 const SelectList = styled.ul`
@@ -32,13 +32,6 @@ const ListItem = styled.li`
     color: #ffffff;
   }
 `
-const Toggler = styled.button`
-  padding: 0.5em 0.75em;
-  width: 100%;
-  height: 100%;
-  border: none;
-  outline: none;
-`
 
 const DropdownSelector: FC<IProps> = ({ onColorChange }) => {
   const [open, setOpen] = useState(false);
@@ -56,8 +49,8 @@ const DropdownSelector: FC<IProps> = ({ onColorChange }) => {
 
   return (
     <Dropdown ref={list}>
-      <Toggler onClick={toggle}>
-          <i className={`fas fa-angle-${open ? 'up' : 'down'}`}></i>
+      <Toggler toggle={toggle}>
+        <i className={`fas fa-angle-${open ? 'up' : 'down'}`}></i>
       </Toggler>
       {
         open && (

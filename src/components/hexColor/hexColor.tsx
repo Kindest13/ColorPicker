@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const Text = styled.div`
   padding: 10px;
-  flex-grow: 3;
+  width: 100%;
 `
 
 const HexColor: FC<IProps> = ({hex}) => (
