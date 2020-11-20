@@ -61,7 +61,7 @@ const DropdownSelector: FC<IProps> = ({ onChangeColor }) => {
       </Toggler>
       {
         open && (
-          <SelectList>
+          <SelectList role="colors-list">
             {
               presets.map(({ label, value }) => (
                 <ListItem
