@@ -1,14 +1,14 @@
 {
   "name": "@thekindestruss/colorpicker",
-  "version": "0.0.3",
-  "description": "",
+  "version": "0.0.4",
+  "description": "Covered with tests",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "scripts": {
     "start": "webpack-dev-server --mode development --open --hot",
     "build": "rollup -c",
     "build:watch": "rollup -c -w",
-    "test": "jest",
+    "test": "jest --updateSnapshot",
     "test-coverage": "jest --coverage",
     "lint": "eslint -c eslintrc.json src/**/*.ts",
     "lint:fix": "eslint -c eslintrc.json src/**/*.ts --fix",

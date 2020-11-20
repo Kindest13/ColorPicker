@@ -1,5 +1,5 @@
 import { MouseEvent } from 'React';
-import { OnChangeColor } from '../types';
+import { OnChangeColor } from '../../types';
 
 export interface IProps {
   onChangeColor: OnChangeColor;

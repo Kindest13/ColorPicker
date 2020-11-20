@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'React';
-import { OnChangeColor } from '../types';
+import { OnChangeColor } from '../../types';
 import { RgbColor } from '../../../types';
 
 export interface IProps {

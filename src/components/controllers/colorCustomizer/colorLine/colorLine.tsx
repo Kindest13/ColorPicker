@@ -37,6 +37,7 @@ const ColorLine: FC<IProps> = ({ color, label, handleColorChange, value }) => (
     <ColorLabel color={color}>{label}</ColorLabel>
     <Input
       onChange={(event) => handleColorChange(color, event)}
+      name={color}
       value={value}
       min={0}
       max={255}

@@ -1,4 +1,4 @@
-export type OnChangeColor = (color: string) => void;
+import { OnChangeColor } from '../types';
 
 export default interface IProps {
   color: string;
