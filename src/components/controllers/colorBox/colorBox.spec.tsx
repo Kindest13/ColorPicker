@@ -6,7 +6,7 @@ afterEach(cleanup);
 
 test('<ColorBox/> should change color depends on props', () => {
   const hexColor = "#ffffff";
-  const mockProps = { hex: hexColor };
+  const mockProps = { color: hexColor };
   const { container } = render(<ColorBox {...mockProps} />);
 
   expect(container.firstChild).toHaveStyle(`background-color: ${hexColor}`);

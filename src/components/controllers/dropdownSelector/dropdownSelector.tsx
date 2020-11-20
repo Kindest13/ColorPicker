@@ -3,7 +3,7 @@ import useOnClickOutside from 'use-onclickoutside';
 import { IProps, ChangeColorHandler } from './types';
 import ColorBox from '../colorBox/colorBox';
 import Toggler from '../toggler/toggler';
-import { presets } from '../../constants';
+import { presets } from '../../../constants';
 import styled from 'styled-components';
 
 const Dropdown = styled.div`
@@ -33,13 +33,20 @@ const ListItem = styled.li`
   }
 `
 
-const DropdownSelector: FC<IProps> = ({ onColorChange }) => {
+const DropdownSelector: FC<IProps> = ({ onChangeColor }) => {
   const [open, setOpen] = useState(false);
-  const toggle = () => setOpen(!open);
+  const handleToggle = () => setOpen(!open);
   const list = useRef(null);
+  
   const changeColorHandler: ChangeColorHandler = (event) => {
-    toggle();
-    onColorChange(event)
+    let list = event.target as HTMLLIElement;
+    
+    if(list.tagName !== "LI") {
+      list = list.parentNode as HTMLLIElement;
+    }
+    const color = list.getAttribute("value");
+    onChangeColor(color);
+    handleToggle();
   }
 
   useOnClickOutside(list, () => {
@@ -49,19 +56,20 @@ const DropdownSelector: FC<IProps> = ({ onColorChange }) => {
 
   return (
     <Dropdown ref={list}>
-      <Toggler toggle={toggle}>
+      <Toggler onToggle={handleToggle}>
         <i className={`fas fa-angle-${open ? 'up' : 'down'}`}></i>
       </Toggler>
       {
         open && (
-          <SelectList onClick={changeColorHandler}>
+          <SelectList>
             {
               presets.map(({ label, value }) => (
                 <ListItem
                   key={label}
-                  value={value}>
+                  value={value}
+                  onClick={changeColorHandler}>
                     <span>{label}</span>
-                  <ColorBox hex={value} />
+                    <ColorBox color={value} />
                 </ListItem>
               ))
             }

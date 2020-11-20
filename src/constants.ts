@@ -1,6 +1,6 @@
-import { IColorData, IRgbColor, IPreset } from './types';
+import { ColorData, RgbColor, Preset } from './types';
 
-export const colorsData: IColorData[] = [
+export const colorsData: ColorData[] = [
   {
     label: 'R',
     color: 'red',
@@ -15,13 +15,13 @@ export const colorsData: IColorData[] = [
   },
 ];
 
-export const rgbSetup: IRgbColor = {
+export const rgbSetup: RgbColor = {
   red: 0,
   green: 0,
   blue: 0,
 };
 
-export const presets: IPreset[] = [
+export const presets: Preset[] = [
   {
     label: 'RED',
     value: '#ff0000',

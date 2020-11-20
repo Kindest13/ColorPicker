@@ -2,9 +2,9 @@ import React, { useState, useRef, useEffect, FC } from 'react';
 import ColorLine from './colorLine/colorLine';
 import ColorBox from '../colorBox/colorBox';
 import Toggler from '../toggler/toggler';
-import { colorsData, rgbSetup } from '../../constants';
-import { IProps, HandleColorChange } from './types';
-import { IRgbColor } from '../../types';
+import { colorsData, rgbSetup } from '../../../constants';
+import { IProps, HandleColorChange, GetHexColor } from './types';
+import { RgbColor } from '../../../types';
 import useOnClickOutside from 'use-onclickoutside';
 import hexToRgb from 'hex-rgb';
 import rgbToHex from 'rgb-hex';
@@ -52,44 +52,48 @@ const Apply = styled.button`
   }
 `
 
-const ColorCustomizer : FC<IProps> =  ({ submit, hex }) => {
-  const [color, setColor] = useState<string>(hex);
-  const [RGBColors, setRGBColors] = useState<IRgbColor>(rgbSetup);
+const ColorCustomizer : FC<IProps> =  ({ hexColor, onChangeColor }) => {
+  const [color, setColor] = useState<string>(hexColor);
+  const [RGBColors, setRGBColors] = useState<RgbColor>(rgbSetup);
   const [open, setOpen] = useState<boolean>(false);
   const customizer = useRef(null);
   
   useEffect(() => {
-    setRGBColors(hexToRgb(hex) as IRgbColor);
-    setColor(hex);
-  }, [hex]);
+    setRGBColors(hexToRgb(hexColor) as RgbColor);
+    setColor(hexColor);
+  }, [hexColor]);
   
-  const toggle = () => setOpen(!open);
+  const handleToggle = () => setOpen(!open);
+  
+  const getHexColor: GetHexColor = rgbColor => `#${rgbToHex(rgbColor.red, rgbColor.green, rgbColor.blue)}`;
   
   const handleColorChange: HandleColorChange = (color, event) => {
     const value = Number(event.target.value);
     const updatedColors = { ...RGBColors, [color]: value };
     setRGBColors(updatedColors);
-    setColor(`#${rgbToHex(updatedColors.red, updatedColors.green, updatedColors.blue)}`);
+    const hex = getHexColor(updatedColors);
+    setColor(hex);
   };
 
   const handleCancel = () => {
     if(!open) return;
-    setRGBColors(hexToRgb(hex) as IRgbColor);
-    setColor(hex);
+    setRGBColors(hexToRgb(hexColor) as RgbColor);
+    setColor(hexColor);
     setOpen(false);
   }
 
   const handleSubmit = () => {
-    toggle();
-    submit(RGBColors);
+    const hex = getHexColor(RGBColors);
+    onChangeColor(hex);
+    handleToggle();
   }
   
   useOnClickOutside(customizer, handleCancel);
 
   return (
     <div ref={customizer}>
-      <Toggler toggle={toggle}>
-        <ColorBox hex={color} />
+      <Toggler onToggle={handleToggle}>
+        <ColorBox color={color} />
       </Toggler>
       {
         open && (

@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import IProps from '../colorBox/types';
+import IProps from '../controllers/colorBox/types';
 import styled from 'styled-components';
 
 const Text = styled.div`
@@ -7,8 +7,8 @@ const Text = styled.div`
   width: 100%;
 `
 
-const HexColor: FC<IProps> = ({hex}) => (
-  <Text>{hex}</Text>
+const HexColor: FC<IProps> = ({ color }) => (
+  <Text>{color}</Text>
 );
 
 export default HexColor;
