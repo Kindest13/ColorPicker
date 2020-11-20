@@ -1,4 +1,4 @@
 export default interface IProps {
-  toggle: () => void;
+  onToggle: () => void;
   children: React.ReactNode;
 }

@@ -1,20 +1,20 @@
-import React, { FC } from 'react'
-import ColorCustomizer from '../colorCustomizer/colorCustomizer';
-import DropdownSelector from '../dropdownSelector/dropdownSelector';
+import React, { FC } from 'react';
+import ColorCustomizer from './colorCustomizer/colorCustomizer';
+import DropdownSelector from './dropdownSelector/dropdownSelector';
 import IProps from './types';
 import styled from 'styled-components';
 
-const Controllers = styled.div`
+const Wrapper = styled.div`
   display: flex;
 `
 
-const controllers: FC<IProps> = ({ submit, hex, onColorChange }) => (
-  <Controllers>
+const Controllers: FC<IProps> = ({ color, onChangeColor }) => (
+  <Wrapper>
     <ColorCustomizer
-      submit={submit}
-      hex={hex} />
-    <DropdownSelector onColorChange={onColorChange} />
-  </Controllers>
+      hexColor={color}
+      onChangeColor={onChangeColor} />
+    <DropdownSelector onChangeColor={onChangeColor} />
+  </Wrapper>
 );
 
-export default controllers;
+export default Controllers;

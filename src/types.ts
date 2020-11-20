@@ -1,4 +1,4 @@
-export interface IRgbColor {
+export interface RgbColor {
   red: number;
   green: number;
   blue: number;
@@ -6,12 +6,12 @@ export interface IRgbColor {
   [key: string]: number;
 }
 
-export interface IColorData {
+export interface ColorData {
   label: string;
   color: string;
 }
 
-export interface IPreset {
+export interface Preset {
   label: string;
   value: string;
 }

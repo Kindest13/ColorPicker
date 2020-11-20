@@ -4,7 +4,7 @@ import Toggler from './toggler';
 
 describe('<Toggler/>', () => {
   const mockProps = {
-    toggle: () => {return;},
+    onToggle: jest.fn(),
     children: <div></div>,
   }
   const { container } = render(<Toggler {...mockProps} />);

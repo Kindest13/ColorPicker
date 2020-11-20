@@ -8,14 +8,13 @@ const Toggler = styled.button`
   height: 100%;
   border: none;
   outline: none;
+  cursor: pointer;
 `
 
-const toggler: FC<IProps> = ({ toggle, children }) => (
+const toggler: FC<IProps> = ({ onToggle, children }) => (
   <Toggler
-    onClick={toggle}
-    role="button-toggler">
-      {children}
-  </Toggler>
+    role="button-toggler"
+    onClick={onToggle}>{children}</Toggler>
 );
 
 export default toggler;

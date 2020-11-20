@@ -4,8 +4,8 @@ import ColorCustomizer from './colorCustomizer';
 
 describe('<ColorCustomizer/>', () => {
   const mockProps = {
-    submit: jest.fn(),
-    hex: "#000000"
+    onChangeColor: jest.fn(),
+    hexColor: "#000000"
   }
   
   test('customizer should be closed', () => {

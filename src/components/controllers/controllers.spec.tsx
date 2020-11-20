@@ -4,9 +4,8 @@ import Controllers from './controllers';
 
 describe('<Controllers/>', () => {
   const mockProps = {
-    submit: () => {return;},
-    hex: '#ffffff',
-    onColorChange: () => {return;}
+    color: '#ffffff',
+    onChangeColor: jest.fn()
   }
   const { container } = render(<Controllers {...mockProps} />);
   it('should match the snapshot', () => {

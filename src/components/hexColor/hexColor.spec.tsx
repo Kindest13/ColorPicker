@@ -4,18 +4,18 @@ import HexColor from './hexColor';
 
 describe('<HexColor/>', () => {
   const mockProps = {
-    hex: "#ff0000"
+    color: "#ff0000"
   }
   const { container, getByText, rerender } = render(<HexColor {...mockProps} />);
 
   test('should contains text with prop change', () => {
     const mockProps_2  = {
-      hex: "#000000"
+      color: "#000000"
     };
 
-    getByText(mockProps.hex);
+    getByText(mockProps.color);
     rerender(<HexColor {...mockProps_2} />);
-    getByText(mockProps_2.hex);
+    getByText(mockProps_2.color);
   })
 
   test('should match the snapshot', () => {

@@ -4,7 +4,7 @@ import DropdownSelector from './dropdownSelector';
 
 describe('<DropdownSelector/>', () => {
   const mockProps = {
-    onColorChange: () => {return;}
+    onChangeColor: jest.fn()
   }
   
   test('should open dropdown list by clicking on toggler', () => {

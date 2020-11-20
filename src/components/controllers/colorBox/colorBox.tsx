@@ -11,6 +11,6 @@ const Box = styled.div.attrs(p => ({
   height: 15px;
 `
 
-const ColorBox: FC<IProps> = ({ hex }) => <Box color={hex} />;
+const ColorBox: FC<IProps> = ({ color }) => <Box color={color} />;
 
  export default ColorBox;
